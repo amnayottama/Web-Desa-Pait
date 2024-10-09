@@ -8,6 +8,9 @@ Route::get('/', function () {
 Route::get('/profile', function () {
     return view('admin.profile');
 });
+Route::get('/data-pekerjaan', function () {
+    return view('admin.data-pekerjaan');
+});
 Route::get('/login', function () {
     return view('login');
 });

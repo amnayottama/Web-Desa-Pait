@@ -15,8 +15,11 @@
             @include('layouts.sidebar')
         </div>
         {{-- Content --}}
-        <main class="ml-20 w-full">
+        <main class="flex-grow ml-20 md:ml-64 p-4">
             @yield('contents')
+            <div class="flex p-4 justify-end text-md font-medium text-gray-400">
+                2024 © Made with by Inaharsa Technology
+            </div>
         </main>
     </div>
 </body>

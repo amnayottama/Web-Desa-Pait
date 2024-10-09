@@ -1,7 +1,7 @@
     <footer class="w-full bg-center" style="background-image: url('{{ asset('images/footer.png') }}');">
         <div class="w-full">
-            <div class="grid grid-cols-2 justify-center gap-4 mb-4 px-20 py-6 lg:py-8 md:grid-cols-3">
-                <div>
+            <div class="grid grid-cols-1 justify-items-center gap-4 mb-4 px-20 py-6 lg:py-8 md:grid-cols-3">
+                <div class="text-center md:text-left">
                     <h2 class="mb-3 text-md font-normal text-yellow-400 uppercase">ALAMAT</h2>
                     <ul class="text-white font-light">
                         <li class="mb-4">
@@ -10,7 +10,7 @@
                         </li>
                     </ul>
                 </div>
-                <div>
+                <div class="text-center md:text-left">
                     <h2 class="mb-3 text-md font-normal text-yellow-400 uppercase">NARAHUBUNG</h2>
                     <ul class="text-white font-light">
                         <li class="">
@@ -21,13 +21,30 @@
                         </li>
                     </ul>
                     <h2 class="mb-3 text-md font-normal text-yellow-400 uppercase">SOSIAL MEDIA</h2>
+                    <div class="flex gap-2 justify-center md:justify-start">
+                        <a href="#">
+                            <img src="{{ asset('images/facebook.svg') }}" class="h-7 w-7" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="{{ asset('images/twitter.svg') }}" class="h-7 w-7" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="{{ asset('images/instagram.svg') }}" class="h-7 w-7" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="{{ asset('images/youtube.svg') }}" class="h-7 w-7" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="{{ asset('images/tiktok.svg') }}" class="h-7 w-7 text-gray-200" alt="">
+                        </a>
+                    </div>
                 </div>
-                <div>
+                <div class="text-center md:text-left">
                     <h2 class="mb-3 text-md font-normal text-yellow-400 uppercase">SUPPORT BY</h2>
                     <ul class="text-white font-light">
-                        <li class="">
+                        <div class="flex justify-center md:justify-start">
                             <img src="{{ asset('images/logo-um.png') }}" class="h-12" alt="">
-                        </li>
+                        </div>
                     </ul>
                 </div>
             </div>

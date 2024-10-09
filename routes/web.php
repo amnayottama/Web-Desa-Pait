@@ -11,6 +11,9 @@ Route::get('/profile', function () {
 Route::get('/data-pekerjaan', function () {
     return view('admin.data-pekerjaan');
 });
+Route::get('/data-masyarakat', function () {
+    return view('admin.data-masyarakat');
+});
 Route::get('/login', function () {
     return view('login');
 });

@@ -28,6 +28,7 @@
         integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     @stack('scripts')
+    @include('sweetalert::alert')
 </body>
 
 </html>

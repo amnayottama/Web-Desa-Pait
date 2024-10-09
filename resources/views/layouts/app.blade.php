@@ -12,6 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -28,6 +29,7 @@
             </div>
         </main>
     </div>
+    @include('sweetalert::alert')
 </body>
 
 </html>

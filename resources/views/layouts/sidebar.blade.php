@@ -65,7 +65,7 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">Data Pekerjaan</span>
                 </a>
             </li>
-            <li>
+            <li class="absolute bottom-4 inset-x-3">
                 <a href="#"
                     class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">

@@ -25,3 +25,7 @@ Route::get('/', function () {
 Route::get('/statistic', function () {
     return view('statistic');
 });
+
+Route::get('/berita', function () {
+    return view('berita');
+});

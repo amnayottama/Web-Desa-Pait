@@ -4,7 +4,7 @@
     <section class="relative bg-center bg-no-repeat bg-cover bg-gray-700 bg-blend-screen"
         style="background-image: url('{{ asset('images/jumbotron-desain.png') }}');">
         <div class="absolute inset-0 bg-gradient-to-r from-[#AA0000] to-[#F2295B] opacity-75 z-0"></div>
-        <div class="relative z-10 px-4 mx-auto max-w-screen-xl text-left py-24 lg:py-56">
+        <div class="relative z-10 px-12 mx-auto w-full text-left py-24 lg:py-56">
             <h1
                 class="mb-4 text-2xl font-bold md:font-extrabold tracking-tight leading-none text-white md:text-4xl lg:text-6xl">
                 Selamat

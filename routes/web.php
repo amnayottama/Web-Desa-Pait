@@ -18,10 +18,19 @@ Route::get('/data-pekerjaan', function () {
 Route::get('/data-masyarakat', function () {
     return view('admin.data-masyarakat');
 });
+Route::get('/data-berita', function () {
+    return view('admin.data-berita');
+});
 
 Route::get('/', function () {
     return view('home');
 });
 Route::get('/statistic', function () {
     return view('statistic');
+});
+Route::get('/berita', function () {
+    return view('berita');
+});
+Route::get('/detail-berita', function () {
+    return view('detail-berita');
 });

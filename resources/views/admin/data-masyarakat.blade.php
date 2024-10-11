@@ -36,44 +36,46 @@
                         </div>
                         <!-- Modal body -->
                         <div class="p-4 md:p-5">
-                            <form class="space-y-4" action="#">
+                            <form class="space-y-4" action="{{ route('masyarakat.store') }}" method="POST">
+                                @csrf
                                 <div>
-                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-                                    <input type="name" name="name" id="name"
+                                    <label for="nama" class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
+                                    <input type="text" name="nama" id="nama"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="Masukkan Nama Pekerjaan..." required />
                                 </div>
                                 <div>
                                     <label for="nik" class="block mb-2 text-sm font-medium text-gray-900">NIK</label>
-                                    <input type="nik" name="nik" id="nik"
+                                    <input type="text" name="nik" id="nik"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="Masukkan Nama Pekerjaan..." required />
                                 </div>
                                 <div class="">
-                                    <label for="jenis-kelamin" class="block mb-2 text-sm font-medium text-gray-900">Jenis
+                                    <label for="jk" class="block mb-2 text-sm font-medium text-gray-900">Jenis
                                         Kelamin</label>
-                                    <select id="jenis-kelamin"
+                                    <select id="jk" name="jk"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                         <option selected="">Pilih...</option>
-                                        <option value="laki-laki">Laki-laki</option>
-                                        <option value="perempuan">Perempuan</option>
+                                        <option value="Laki-laki">Laki-laki</option>
+                                        <option value="Perempuan">Perempuan</option>
                                     </select>
                                 </div>
                                 <div class="">
                                     <label for="alamat"
                                         class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
-                                    <textarea id="alamat" rows="4"
+                                    <textarea id="alamat" name="alamat" rows="4"
                                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Masukan Alamat Pekerjaan..."></textarea>
                                 </div>
                                 <div class="">
-                                    <label for="jenis-pekerjaan" class="block mb-2 text-sm font-medium text-gray-900">Jenis
+                                    <label for="pekerjaan" class="block mb-2 text-sm font-medium text-gray-900">Jenis
                                         Pekerjaan</label>
-                                    <select id="jenis-pekerjaan"
+                                    <select id="pekerjaan" name="pekerjaan"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                         <option selected="">Pilih...</option>
-                                        <option value="akuntan">Akuntan</option>
-                                        <option value="anggota-bpk">Anggota BPK</option>
+                                        @foreach ($job as $ijob)
+                                            <option value="{{ $ijob->id }}">{{ $ijob->nama_pekerjaan }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="flex justify-end">
@@ -85,8 +87,10 @@
                     </div>
                 </div>
             </div>
+
             <!-- Edit modal -->
-            <div id="edit-modal" tabindex="-1" aria-hidden="true"
+            @foreach ($pep as $item)
+            <div id="edit-modal-{{$item->id}}" tabindex="-1" aria-hidden="true"
                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative p-4 w-full max-w-md max-h-full">
                     <!-- Modal content -->
@@ -98,7 +102,7 @@
                             </h3>
                             <button type="button"
                                 class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                                data-modal-hide="edit-modal">
+                                data-modal-hide="edit-modal-{{$item->id}}">
                                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -109,46 +113,51 @@
                         </div>
                         <!-- Modal body -->
                         <div class="p-4 md:p-5">
-                            <form class="space-y-4" action="#">
+                            <form action="{{ route('masyarakat.update', $item->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
                                 <div>
-                                    <label for="name"
+                                    <label for="nama"
                                         class="block mb-2 text-sm font-medium text-gray-900">Nama</label>
-                                    <input type="name" name="name" id="name"
+                                    <input type="text" name="nama" id="nama"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        placeholder="Masukkan Nama Pekerjaan..." required />
+                                        value="{{$item->nama}}" required />
                                 </div>
                                 <div>
                                     <label for="nik" class="block mb-2 text-sm font-medium text-gray-900">NIK</label>
-                                    <input type="nik" name="nik" id="nik"
+                                    <input type="text" name="nik" id="nik"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        placeholder="Masukkan Nama Pekerjaan..." required />
+                                        value="{{$item->nik}}" required />
                                 </div>
                                 <div class="">
                                     <label for="jenis-kelamin" class="block mb-2 text-sm font-medium text-gray-900">Jenis
                                         Kelamin</label>
-                                    <select id="jenis-kelamin"
+                                    <select id="jenis-kelamin" name="jk"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                         <option selected="">Pilih...</option>
-                                        <option value="laki-laki">Laki-laki</option>
-                                        <option value="perempuan">Perempuan</option>
+                                        <option value="Laki-laki" {{ $item->jk == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                        <option value="Perempuan" {{ $item->jk == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                                     </select>
                                 </div>
                                 <div class="">
                                     <label for="alamat"
                                         class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
-                                    <textarea id="alamat" rows="4"
+                                    <textarea id="alamat" rows="4" name="alamat"
                                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Masukan Alamat Pekerjaan..."></textarea>
+                                        >{{$item->alamat}}</textarea>
                                 </div>
                                 <div class="">
                                     <label for="jenis-pekerjaan"
                                         class="block mb-2 text-sm font-medium text-gray-900">Jenis
                                         Pekerjaan</label>
-                                    <select id="jenis-pekerjaan"
+                                    <select id="jenis-pekerjaan" name="pekerjaan"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                         <option selected="">Pilih...</option>
-                                        <option value="akuntan">Akuntan</option>
-                                        <option value="anggota-bpk">Anggota BPK</option>
+                                        @foreach ($job as $ijob)
+                                            <option value="{{ $ijob->id }}" {{ $ijob->nama_pekerjaan === $item->pekerjaan ? 'selected' : '' }}>
+                                                {{ $ijob->nama_pekerjaan }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="flex justify-end">
@@ -160,14 +169,17 @@
                     </div>
                 </div>
             </div>
+            @endforeach
+
+            @foreach ($pep as $item)
             <!-- Delete modal -->
-            <div id="popup-modal" tabindex="-1"
+            <div id="popup-modal-{{$item->id}}" tabindex="-1"
                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                 <div class="relative p-4 w-full max-w-md max-h-full">
                     <div class="relative bg-white rounded-lg shadow">
                         <button type="button"
                             class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                            data-modal-hide="popup-modal">
+                            data-modal-hide="popup-modal-{{$item->id}}">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 14 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -183,20 +195,42 @@
                             </svg>
                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin ingin
                                 menghapus data ini?</h3>
-                            <button data-modal-hide="popup-modal" type="button"
-                                class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                            <form action="{{ route('masyarakat.destroy', ['id' => $item->id]) }}" method="POST" id="deleteForm-{{$item->id}}" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                            <button data-modal-hide="popup-modal-{{$item->id}}" onclick="document.getElementById('deleteForm-{{$item->id}}').submit();" type="button"
+                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                 Ya
                             </button>
-                            <button data-modal-hide="popup-modal" type="button"
+                            <button data-modal-hide="popup-modal-{{$item->id}}" type="button"
                                 class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Tidak</button>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
+
         <div class="text-gray-500">
             Halaman ini berisi data masyarakat yang terdaftar.
         </div>
+        {{-- notif CRUD data --}}
+        @if (session('status'))
+        <div class="mt-2 text-green-600">
+            {{ session('status') }}
+        </div>
+        @endif
+
+        @if ($errors->any())
+        <div class="mt-2 text-red-600">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="relative mt-4 p-4 overflow-x-auto shadow-md rounded-lg bg-white sm:rounded-lg">
             <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
                 <div>
@@ -291,27 +325,28 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($pep as $item)
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <td class="w-4 p-4">
-                            1
+                            {{ $loop->iteration }}
                         </td>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-500 whitespace-nowrap">
-                            User
+                            {{ $item->nama }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-500 whitespace-nowrap">
-                            123
+                            {{ $item->nik }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-500 whitespace-nowrap">
-                            Laki-laki
+                            {{ $item->jk }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-500 whitespace-nowrap">
-                            Malang
+                            {{ $item->alamat }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-500 whitespace-nowrap">
-                            Akuntan
+                            {{ $item->job ? $item->job->nama_pekerjaan : 'Tidak ada pekerjaan' }}
                         </th>
                         <td class="px-6 py-4">
-                            <button data-modal-target="edit-modal" data-modal-toggle="edit-modal"
+                            <button data-modal-target="edit-modal-{{$item->id}}" data-modal-toggle="edit-modal-{{$item->id}}"
                                 class="p-2 rounded-md text-black bg-[#FFC107] hover:bg-yellow-400" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-5">
@@ -319,7 +354,7 @@
                                         d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32L19.513 8.2Z" />
                                 </svg>
                             </button>
-                            <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                            <button data-modal-target="popup-modal-{{$item->id}}" data-modal-toggle="popup-modal-{{$item->id}}"
                                 class="p-2 rounded-md text-white bg-[#DC3545] hover:bg-red-700" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-5">
@@ -330,6 +365,7 @@
                             </button>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
             <div class="flex flex-row justify-between items-center">

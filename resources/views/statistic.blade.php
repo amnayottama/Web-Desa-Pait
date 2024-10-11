@@ -13,7 +13,7 @@
         <div class="flex flex-col justify-center overflow-x-auto">
             <table class="w-full text-sm border border-gray-200">
             <thead class="text-xs text-white bg-[#475669]">
-                <tr class="text-center">    
+                <tr class="text-center">
                 <th rowspan="2" colspan="2" class="border border-gray-200">Kelompok</th>
                 <th colspan="2" class="border border-gray-200">Jumlah</th>
                 <th colspan="2" class="border border-gray-200">Laki-laki</th>
@@ -28,30 +28,22 @@
                 <th class="border border-gray-200">%</th>
                 </tr>
             <tbody>
+                @foreach ($jobStats as $job => $stats)
                 <tr>
-                <td class="flex justify-center pt-1"><div class="h-3 w-3 rounded-full bg-[#1C64F2]"></div></td>
-                <td class="text-left">Supir</td>
-                <td class="text-right">10</td>
-                <td class="text-right">10.00%</td>
-                <td class="text-right">7</td>
-                <td class="text-right">70.00%</td>
-                <td class="text-right">3</td>
-                <td class="text-right">30.00%</td>
+                    <td class="flex justify-center pt-1"><div class="h-3 w-3 rounded-full" style="background-color: {{ $stats['warna'] }}"></div></td>
+                    <td class="text-left">{{ $stats['job']->nama_pekerjaan ?? 'Unknown' }}</td>
+                    <td class="text-right">{{ $stats['total'] }}</td>
+                    <td class="text-right">{{ number_format(($stats['total'] / $pep->count()) * 100, 2) }}%</td>
+                    <td class="text-right">{{ $stats['male'] }}</td>
+                    <td class="text-right">{{ number_format(($stats['male'] / $stats['total']) * 100, 2) }}%</td>
+                    <td class="text-right">{{ $stats['female'] }}</td>
+                    <td class="text-right">{{ number_format(($stats['female'] / $stats['total']) * 100, 2) }}%</td>
                 </tr>
-                <tr>
-                <td class="flex justify-center pt-1"><div class="h-3 w-3 rounded-full bg-[#16BDCA]"></div></td>
-                <td class="text-left">Karyawan</td>
-                <td class="text-right">90</td>
-                <td class="text-right">90.00%</td>
-                <td class="text-right">67</td>
-                <td class="text-right">75.00%</td>
-                <td class="text-right">23</td>
-                <td class="text-right">25.00%</td>
-                </tr>
+                @endforeach
             </tbody>
             </table>
 
-            
+
         </div>
     </div>
 </div>
@@ -60,11 +52,13 @@
 @push('scripts')
 
 <script>
+// Data from the PHP controller
+const chartData = @json($chartData);
 
 const getChartOptions = () => {
   return {
-    series: [52.8, 26.8],
-    colors: ["#1C64F2", "#16BDCA"],
+    series: chartData.series, // Use series data from the database
+    colors: chartData.colors, // Use colors from the database
     chart: {
       height: 420,
       width: "100%",
@@ -85,12 +79,22 @@ const getChartOptions = () => {
         }
       },
     },
-    labels: ["Direct", "Organic search"],
+    labels: chartData.labels, // Use labels from the database
     dataLabels: {
       enabled: true,
+      formatter: function (value) {
+        return value.toFixed(1) + "%"; // Round to 1 decimal place
+      },
       style: {
         fontFamily: "Inter, sans-serif",
       },
+    },
+    tooltip: {
+      y: {
+        formatter: function (value) {
+          return value.toFixed(1) + "%"; // Round tooltip values to 1 decimal place
+        }
+      }
     },
     legend: {
       position: "bottom",
@@ -99,14 +103,14 @@ const getChartOptions = () => {
     yaxis: {
       labels: {
         formatter: function (value) {
-          return value + "%"
+          return value + "%";
         },
       },
     },
     xaxis: {
       labels: {
         formatter: function (value) {
-          return value  + "%"
+          return value  + "%";
         },
       },
       axisTicks: {
@@ -116,19 +120,21 @@ const getChartOptions = () => {
         show: false,
       },
     },
-  }
-}
+  };
+};
 
 if (document.getElementById("pie-chart") && typeof ApexCharts !== 'undefined') {
   const chart = new ApexCharts(document.getElementById("pie-chart"), getChartOptions());
   chart.render();
 }
 
-</script>
-<script>
-  // Dapatkan elemen dengan class="apexcharts-legend"
-  var apexLegend = document.querySelector(".apexcharts-legend");
-  if (apexLegend) {
-    apexLegend.remove();}
+// Remove the legend if it's present
+var apexLegend = document.querySelector(".apexcharts-legend");
+if (apexLegend) {
+  apexLegend.remove();
+}
+
 </script>
 @endpush
+
+

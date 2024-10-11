@@ -1,5 +1,7 @@
 import "./bootstrap";
 import "flowbite";
-import DataTable from "datatables.net-dt";
+import Alpine from 'alpinejs';
 
-let table = new DataTable("#myTable");
+window.Alpine = Alpine;
+
+Alpine.start();

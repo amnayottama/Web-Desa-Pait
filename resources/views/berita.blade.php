@@ -42,20 +42,14 @@
                 </button>
                 <div id="slider"
                     class="flex flex-col md:flex-row max-w-screen-xl h-[1300px] md:h-full gap-8 overflow-y-hidden md:overflow-x-hidden scroll-smooth">
+                    @foreach ($news as $item)
                     <div
                         class="min-w-[400px] h-fit flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow">
-                        <img class="rounded-t-lg w-full" src="{{ asset('images/image.png') }}" style="height: 250px"
+                        <img class="rounded-t-lg w-full" src="{{ asset($item->gambar) }}" alt="{{ $item->judul }}" style="height: 250px"
                             alt="" />
                         <div class="p-5">
-                            <p class="mb-3 line-clamp-3 font-normal text-gray-700">Lorem ipsum dolor
-                                sit amet consectetur adipisicing elit. At soluta ipsam voluptate iure, quae
-                                molestias
-                                explicabo
-                                asperiores repellendus id, reiciendis perferendis vitae nihil repellat ipsa
-                                distinctio
-                                expedita
-                                ipsum praesentium sint.</p>
-                            <a href="/detail-berita"
+                            <p class="mb-3 line-clamp-3 font-normal text-gray-700">{!! Str::limit($item->deskripsi, 150) !!}</p>
+                            <a href="{{ route('detail', $item->id) }}"
                                 class="flex justify-end items-center px-3 py-2 text-sm font-medium text-gray-500">
                                 Read more
                                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
@@ -66,102 +60,7 @@
                             </a>
                         </div>
                     </div>
-                    <div
-                        class="min-w-[400px] h-fit flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow">
-                        <img class="rounded-t-lg w-full" src="{{ asset('images/jumbotron-desain.png') }}"
-                            style="height: 250px" alt="" />
-                        <div class="p-5">
-                            <p class="mb-3 line-clamp-3 font-normal text-gray-700">Lorem ipsum dolor
-                                sit amet consectetur adipisicing elit. At soluta ipsam voluptate iure, quae
-                                molestias
-                                explicabo
-                                asperiores repellendus id, reiciendis perferendis vitae nihil repellat ipsa
-                                distinctio
-                                expedita
-                                ipsum praesentium sint.</p>
-                            <a href="/detail-berita"
-                                class="flex justify-end items-center px-3 py-2 text-sm font-medium text-gray-500">
-                                Read more
-                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div
-                        class="min-w-[400px] h-fit flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow">
-                        <img class="rounded-t-lg w-full" src="{{ asset('images/jumbotron-desain.png') }}"
-                            style="height: 250px" alt="" />
-                        <div class="p-5">
-                            <p class="mb-3 line-clamp-3 font-normal text-gray-700">Lorem ipsum dolor
-                                sit amet consectetur adipisicing elit. At soluta ipsam voluptate iure, quae
-                                molestias
-                                explicabo
-                                asperiores repellendus id, reiciendis perferendis vitae nihil repellat ipsa
-                                distinctio
-                                expedita
-                                ipsum praesentium sint.</p>
-                            <a href="/detail-berita"
-                                class="flex justify-end items-center px-3 py-2 text-sm font-medium text-gray-500">
-                                Read more
-                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div
-                        class="min-w-[400px] h-fit flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow">
-                        <img class="rounded-t-lg w-full" src="{{ asset('images/jumbotron-desain.png') }}"
-                            style="height: 250px" alt="" />
-                        <div class="p-5">
-                            <p class="mb-3 line-clamp-3 font-normal text-gray-700">Lorem ipsum dolor
-                                sit amet consectetur adipisicing elit. At soluta ipsam voluptate iure, quae
-                                molestias
-                                explicabo
-                                asperiores repellendus id, reiciendis perferendis vitae nihil repellat ipsa
-                                distinctio
-                                expedita
-                                ipsum praesentium sint.</p>
-                            <a href="/detail-berita"
-                                class="flex justify-end items-center px-3 py-2 text-sm font-medium text-gray-500">
-                                Read more
-                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                    <div
-                        class="min-w-[400px] h-fit flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow">
-                        <img class="rounded-t-lg w-full" src="{{ asset('images/jumbotron-desain.png') }}"
-                            style="height: 250px" alt="" />
-                        <div class="p-5">
-                            <p class="mb-3 line-clamp-3 font-normal text-gray-700">Lorem ipsum dolor
-                                sit amet consectetur adipisicing elit. At soluta ipsam voluptate iure, quae
-                                molestias
-                                explicabo
-                                asperiores repellendus id, reiciendis perferendis vitae nihil repellat ipsa
-                                distinctio
-                                expedita
-                                ipsum praesentium sint.</p>
-                            <a href="/detail-berita"
-                                class="flex justify-end items-center px-3 py-2 text-sm font-medium text-gray-500">
-                                Read more
-                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <button id="nextBtn"
                     class="absolute hidden md:block -right-16 top-1/2 -translate-y-1/2 p-2 rounded-lg z-10">

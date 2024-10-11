@@ -1,6 +1,6 @@
 <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
     type="button"
-    class="inline-flex items-center p-2 text-sm text-gray-500 sm:hidden hover:bg-gray-100 w-screen bg-white md:w-fit focus:w-full">
+    class="inline-flex items-center p-2 text-sm text-gray-500 sm:hidden w-screen bg-white md:w-fit focus:w-full hover:bg-gray-100">
     <span class="sr-only">Open sidebar</span>
     <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path clip-rule="evenodd" fill-rule="evenodd"
@@ -20,7 +20,7 @@
         <span class="p-2 text-white font-medium">Menu</span>
         <ul class="mt-4 space-y-2 font-normal">
             <li>
-                <a href="#"
+                <a href="{{ route('dashboard') }}"
                     class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-white transition duration-75 group-hover:text-gray-900"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('profile') }}"
                     class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd"
@@ -42,19 +42,19 @@
                 </a>
             </li>
             <li>
-                <a href="#"
-                    class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 group">
+                <a href="{{ route('news') }}"
+                    class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd"
                             d="M4.125 3C3.089 3 2.25 3.84 2.25 4.875V18a3 3 0 0 0 3 3h15a3 3 0 0 1-3-3V4.875C17.25 3.839 16.41 3 15.375 3H4.125ZM12 9.75a.75.75 0 0 0 0 1.5h1.5a.75.75 0 0 0 0-1.5H12Zm-.75-2.25a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H12a.75.75 0 0 1-.75-.75ZM6 12.75a.75.75 0 0 0 0 1.5h7.5a.75.75 0 0 0 0-1.5H6Zm-.75 3.75a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5H6a.75.75 0 0 1-.75-.75ZM6 6.75a.75.75 0 0 0-.75.75v3c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-3A.75.75 0 0 0 9 6.75H6Z"
                             clip-rule="evenodd" />
                         <path d="M18.75 6.75h1.875c.621 0 1.125.504 1.125 1.125V18a1.5 1.5 0 0 1-3 0V6.75Z" />
-                    </svg>
+                    </svg>
                     <span class="flex-1 ms-3 whitespace-nowrap">Berita</span>
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('masyarakat') }}"
                     class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-700 group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path
@@ -65,7 +65,7 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('job')}}"
                     class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 group">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                         <path fill-rule="evenodd"
@@ -78,15 +78,16 @@
                 </a>
             </li>
             <li class="absolute bottom-4 inset-x-3">
-                <a href="#"
-                    class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 group">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                        <path fill-rule="evenodd"
-                            d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Log Out</span>
-                </a>
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <a href="#" onclick="event.preventDefault(); this.closest('form').submit();"  class="flex items-center p-2 text-white rounded-lg hover:bg-gray-100 hover:text-gray-900 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                <path fill-rule="evenodd"
+                                    d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z"
+                                    clip-rule="evenodd" />
+                            </svg> {{ __('Log Out') }}
+                        </a>
+                    </form>
             </li>
         </ul>
     </div>

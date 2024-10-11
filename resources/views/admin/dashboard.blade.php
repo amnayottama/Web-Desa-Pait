@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('contents')
+@php
+    use Carbon\Carbon;
+@endphp
     <div class="flex flex-col m-4 w-full">
         <div class="text-2xl font-normal">
             Dashboard Website Desa
@@ -10,7 +13,7 @@
                 class="flex flex-row md:w-1/4 justify-between px-6 py-6 md:px-6 md:py-8 gap-10 bg-white rounded-lg border-gray-500 shadow-md">
                 <div class="">
                     <p class="font-medium text-gray-500">Admin</p>
-                    <span class="font-bold">1</span>
+                    <span class="font-bold">{{ $userCount }}</span>
                 </div>
                 <div class="p-3 text-white bg-[#9694FF] rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -24,7 +27,7 @@
                 class="flex flex-row md:w-1/4 justify-between px-6 py-6 md:px-6 md:py-8 gap-10 bg-white rounded-lg border-gray-500 shadow-md">
                 <div class="">
                     <p class="font-medium text-gray-500 whitespace-nowrap">Total Berita</p>
-                    <span class="font-bold">0</span>
+                    <span class="font-bold">{{ $newsCount }}</span>
                 </div>
                 <div class="p-3 text-white bg-[#57CAEB] rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -39,7 +42,7 @@
                 class="flex flex-row md:w-1/4 justify-between px-6 py-6 md:px-6 md:py-8 gap-10 bg-white rounded-lg border-gray-500 shadow-md">
                 <div class="">
                     <p class="font-medium text-gray-500 whitespace-nowrap">Data Masyarakat</p>
-                    <span class="font-bold">0</span>
+                    <span class="font-bold">{{ $personCount }}</span>
                 </div>
                 <div class="p-3 text-white bg-[#5DDAB4] rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -55,7 +58,7 @@
                 class="flex flex-row md:w-1/4 justify-between px-6 py-6 md:px-6 md:py-8 gap-10 bg-white rounded-lg border-gray-500 shadow-md">
                 <div class="">
                     <p class="font-medium text-gray-500 whitespace-nowrap">Data Pekerjaan</p>
-                    <span class="font-bold">0</span>
+                    <span class="font-bold">{{ $jobCount }}</span>
                 </div>
                 <div class="p-3 text-white bg-[#FF7976] rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
@@ -68,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
                 <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-500 bg-white">
                     Berita Terbaru
@@ -90,34 +93,31 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($news as $item)
                     <tr class="bg-white border-b">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-500 whitespace-nowrap">
-                            1
+                            {{$loop->iteration}}
                         </th>
                         <td class="px-6 py-4">
-                            Example
+                            {{ $item->judul }}
                         </td>
                         <td class="px-6 py-4">
-                            08-10-2024
+                        {{-- @if($item->gambar)
+                            <img src="{{ asset('images/news/' . $item->gambar) }}" alt="{{ $item->judul }}" width="100">
+                        @else
+                            <p>No Image</p>
+                        @endif --}}
+                        {{ Carbon::parse($item->created)->translatedFormat('d F Y') }}
                         </td>
                         <td class="px-6 py-4">
-                            Published
+                        @if($item->created)
+                            <p>Published</p>
+                        @else
+                            <p>Not Published</p>
+                        @endif
                         </td>
                     </tr>
-                    <tr class="bg-white border-b">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-500 whitespace-nowrap">
-                            2
-                        </th>
-                        <td class="px-6 py-4">
-                            Example
-                        </td>
-                        <td class="px-6 py-4">
-                            08-10-2024
-                        </td>
-                        <td class="px-6 py-4">
-                            Published
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
